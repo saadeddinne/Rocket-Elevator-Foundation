@@ -39,7 +39,21 @@ class InterventionController < ApplicationController
         end
     end
     end
- 
+    # listing the columns belonging to the battery
+    def get_column
+        if params[:battery].present?
+            @columns = Battery.find(params[:battery]).columns
+        else
+            @columns = Battery.all
+        end
+        if request.xhr?
+            respond_to do |format|
+                format.json {
+                    render json: {columns: @columns}
+                }
+            end
+        end
+    end
 
 
     def new
