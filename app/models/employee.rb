@@ -3,6 +3,9 @@ class Employee < ActiveRecord::Base
   def custom_label_method
     "#{first_name} #{last_name}"
   end
+  def ful_name
+    "#{last_name} #{first_name} "
+  end
 
   belongs_to :user, optional: true
   has_many :buildings, foreign_key: :admin_contact_id

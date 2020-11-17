@@ -30,4 +30,5 @@
 //= require underscore
 //= require gmaps/google
 //= require rails-ujs
+//= require intervention.js
 //= require_tree .

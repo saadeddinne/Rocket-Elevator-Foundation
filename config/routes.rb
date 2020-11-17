@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'intervention/index'
   get 'geolocation/index'
+
+  get 'intervention', to: 'intervention#index'
  
 
   mount RailsAdmin::Engine => '/backoffice', as: 'rails_admin'
@@ -28,7 +31,14 @@ Rails.application.routes.draw do
 
   get 'my_quotes' => 'quotes#user_quotes', as: :my_quotes
   get 'my_leads' => 'leads#user_leads', as: :my_leads
-
   match '/watson' => 'watson#speak', via: :get
+
+
+  resources :intervention do
+    get :get_building, on: :collection
+    get :get_battery, on: :collection
+    get :get_column, on: :collection
+   
+  end
 
 end
