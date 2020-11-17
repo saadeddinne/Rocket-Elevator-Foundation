@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     get :get_building, on: :collection
     get :get_battery, on: :collection
     get :get_column, on: :collection
+    get :get_elevator, on: :collection
    
   end
 

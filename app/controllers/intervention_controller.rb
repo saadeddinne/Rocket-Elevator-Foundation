@@ -54,14 +54,27 @@ class InterventionController < ApplicationController
             end
         end
     end
+    # Listing the elevators belonging to the column
+    def get_elevator
+        if params[:column].present?
+            @elevators = Column.find(params[:column]).elevators
+        else
+            @elevators = Column.all
+        end
+        if request.xhr?
+            respond_to do |f|
+                f.json {
+                    render json: {elevators: @elevators}
+                }
+            end
+        end
+    end
 
 
     def new
-      @intervention = Intervention.new
-  end
-  def intervention_params
-    params.permit( :employee_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :result, :report, :status)
-  end
-
-
+        @intervention = Intervention.new
+    end
+    def intervention_params
+        params.permit( :employee_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :result, :report, :status)
+    end
 end

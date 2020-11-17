@@ -63,8 +63,33 @@
         </div>
         <div class="col-md-2  "></div>
       </div>
-     
-
+      <div class="row" style="margin-left: 1px">
+      <div class="col-md-2  "></div>
+        <%# Elevators : step 5  %>     
+        <div class="col-md-8 elevator">
+           <%= f.label :elevator %>
+           <%= f.select(:elevator, Elevator.all.collect {|e| [e.id, e.column_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
+        </div>
+        <div class="col-md-2  "></div>
+      </div>
+       <div class="row" style="margin-left: 1px">
+      <div class="col-md-2  "></div>
+         <%# Report: description  %>     
+        <div class="col-md-8 building">
+            <%= f.label :Report %>
+            <%= f.text_area :report, class: 'form-control' %>
+        </div>
+        <div class="col-md-2  "></div>
+      </div>
+       <hr>
+      <div class="row align-items-center building">
+				<div class="col-md-3  " ></div>
+					<div class="col-md-6  " >
+						<%= f.submit class: 'btn btn-block btn-danger', value: 'Submit', :onclick => "alert('Information about your intervention has been sent to the Rocket Elevators servers !')"%>
+            			</div>
+					<div class="col-md-3  " ></div>
+					</div>
+          
 </div>
 </section>        
 </div>
@@ -81,6 +106,8 @@
 $(".building").hide();
 $(".battery").hide();
 $(".column").hide();
+$(".elevator").hide();
+  $("#employee").append('<option value="">None</option>');
 
 $("#building").prop("disabled", true);
 $("#customer").change(function () {
@@ -100,9 +127,6 @@ $("#customer").change(function () {
     method: "GET",
     dataType: "json",
     data: { customer: customer },
-    error: function(xhr, status, error) {
-      console.error("Warning: ajax error: " + error);
-    },
     success: function(response) {
       var buildings = response["buildings"];
       $("#building").empty();
@@ -139,15 +163,13 @@ $("#building").change(function() {
     method: "GET",
     dataType: "json",
     data: { building: building },
-    error: function(xhr, status, error) {
-       console.error("Warning: ajax error: " + error);
-    },
     // success callback function
     success: function(response) {
       var batteries = response["batteries"];
       $("#battery").empty();
 
       $("#battery").append("<option>Select Battery</option>");
+      $("#battery").append('<option value="">None</option>');
       for (var i = 0; i < batteries.length; i++) {
         $("#battery").append(
           '<option value="' +
@@ -166,24 +188,23 @@ $("#building").change(function() {
 // Display columns for specific battery 
 $("#battery").change(function() {
   var battery = $(this).val();
-  if (battery == "") {
-    $("#column").prop("disabled", true);
-  } else {
+  if (battery) {
+    
     $("#column").prop("disabled", false);
+  } else {
+   $("#column").prop("disabled", true);
   }
   $.ajax({
     url: "/intervention/get_column",
     method: "GET",
     dataType: "json",
-    data: { battery: battery },
-    error: function(xhr, status, error) {
-      console.error("AJAX Error: " + error);
-    },
+    data: {battery: battery},
     success: function(response) {
       var columns = response["columns"];
       $("#column").empty();
 
-      $("#column").append("<option>-None-</option>");
+      $("#column").append("<option> Select Column </option>");
+      $("#column").append('<option value="">None</option>');
       for (var i = 0; i < columns.length; i++) {
         $("#column").append(
           '<option value="' +
@@ -196,23 +217,42 @@ $("#battery").change(function() {
     }
   });
 });
+// Display elevators for specific columns
 
-
-// Customer drop down menu
-$(document).ready(function() {
-  var choice = document.getElementById("customer");
-  choice.addEventListener("change", customer);
- 
+$("#column").change(function() {
+  var column = $(this).val();
+  if (column) {
+      $("#elevator").prop("disabled", false);
+  } else {
+      $("#elevator").prop("disabled", true);
+  }
+  $.ajax({
+    url: "/intervention/get_elevator",
+    method: "GET",
+    dataType: "json",
+    data: { column: column },
+    success: function(response) {
+      var elevators = response["elevators"];
+      $("#elevator").empty();
+      $("#elevator").append("<option> Select elevator </option>");
+      $("#elevator").append('<option value="">None</option>');
+      for (var i = 0; i < elevators.length; i++) {
+        $("#elevator").append(
+          '<option value="' +
+            elevators[i]["id"] +
+            '">' +
+            elevators[i]["id"] +
+            "</option>"
+        );
+      }
+    }
+  });
 });
 
-var customer = function() {
-  var choice = document.getElementById("customer").value;
-  if (choice != 0) {
-    $(".building").show();    
-  }
-};
 
-// Building drop down menu
+
+
+// Building dropDown 
 $(document).ready(function() {
   var choice = document.getElementById("building");
   choice.addEventListener("change", building);
@@ -221,12 +261,12 @@ $(document).ready(function() {
 
 var building = function() {
   var choice = document.getElementById("building").value;
-  if (choice != 0) {
+  if (choice) {
     $(".battery").show();
   }
 };
 
-// Battery drop down menu
+// Battery dropDown
 $(document).ready(function() {
   var choice = document.getElementById("battery");
   choice.addEventListener("change", battery);
@@ -234,10 +274,44 @@ $(document).ready(function() {
 
 var battery = function() {
   var choice = document.getElementById("battery").value;
-  if (choice != 0) {
+  if (choice) {
     $(".column").show();
+    
+  }else if(choice =="") {
+    $(".column").hide();
+    $(".elevator").hide();
+    }
+};
+// Column drop down menu
+$(document).ready(function() {
+  var choice = document.getElementById("column");
+  choice.addEventListener("change", column);
+});
+
+var column = function() {
+  var choice = document.getElementById("column").value;
+  if (choice) {
+    $(".elevator").show();
   }
 };
+
+
+// Customer drop down 
+$(document).ready(function() {
+  var choice = document.getElementById("customer");
+  choice.addEventListener("change", customer);
+ 
+});
+
+var customer = function() {
+  var choice = document.getElementById("customer").value;
+  if (choice) {
+    $(".building").show();    
+  }
+};
+
+
+
 
 jQuery(_hash).show();
 
