@@ -47,8 +47,8 @@ class InterventionController < ApplicationController
             @columns = Battery.all
         end
         if request.xhr?
-            respond_to do |format|
-                format.json {
+            respond_to do |f|
+                f.json {
                     render json: {columns: @columns}
                 }
             end

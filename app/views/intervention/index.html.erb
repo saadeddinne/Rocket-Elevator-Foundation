@@ -53,11 +53,7 @@
           <%= f.select(:battery, Battery.all.collect {|b| [b.id, b.building_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
         </div>
         <div class="col-md-2  "></div>
-      </div>
-      
-
-
-
+      </div>   
        <div class="row" style="margin-left: 1px">
       <div class="col-md-2  "></div>
         <%# Columns : step 4  %>     
@@ -181,7 +177,7 @@ $("#battery").change(function() {
     dataType: "json",
     data: { battery: battery },
     error: function(xhr, status, error) {
-      console.error("AJAX Error: " + status + error);
+      console.error("AJAX Error: " + error);
     },
     success: function(response) {
       var columns = response["columns"];
@@ -193,7 +189,7 @@ $("#battery").change(function() {
           '<option value="' +
             columns[i]["id"] +
             '">' +
-            columns[i]["battery_id"] +
+            columns[i]["id"] + " "+ columns[i]["column_type"]+
             "</option>"
         );
       }
