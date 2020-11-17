@@ -32,7 +32,7 @@
       <div class="row" style="margin-left: 1px">
         <div class="col-md-2"></div>
           <div class="col-md-8">
-          <%= f.label :customer %>
+          <%= f.label :"customer*" %>
           <%= f.select(:customer, Customer.all.collect {|c| [c.company_name, c.id]}.sort_by(&:first), {prompt: " Select Customer "}, {class: 'form-control'}) %>            
           </div>
         <div class="col-md-2"></div>
@@ -41,7 +41,7 @@
       <div class="col-md-2"></div>
       <%# Buildings: Step 2  %>  
       <div class="col-md-8 building">
-      <%= f.label :building %>
+      <%= f.label :"building*" %>
       <%= f.select(:building, Building.all.collect {|t| [t.id, t.customer_id, t.administrator_full_name ]}, {prompt: "id"},  {class: 'form-control'}) %>
       </div>
     </div>
@@ -85,7 +85,8 @@
       <div class="row align-items-center building">
 				<div class="col-md-3  " ></div>
 					<div class="col-md-6  " >
-						<%= f.submit class: 'btn btn-block btn-danger', value: 'Submit', :onclick => "alert('Information about your intervention has been sent to the Rocket Elevators servers !')"%>
+          
+						<%= f.submit class: 'btn btn-block btn-danger', value: 'Submit'%>
             			</div>
 					<div class="col-md-3  " ></div>
 					</div>
@@ -279,7 +280,9 @@ var battery = function() {
     
   }else if(choice =="") {
     $(".column").hide();
+    $("#column").prop("disabled", true);
     $(".elevator").hide();
+    $("#elevator").prop("disabled", true);
     }
 };
 // Column drop down menu
@@ -292,6 +295,9 @@ var column = function() {
   var choice = document.getElementById("column").value;
   if (choice) {
     $(".elevator").show();
+  } else if(choice ==""){
+    $(".elevator").hide();
+    $("#elevator").prop("disabled", true);
   }
 };
 
