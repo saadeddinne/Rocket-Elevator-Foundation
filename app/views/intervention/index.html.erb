@@ -1,4 +1,4 @@
-<%# <%= form_with model: @intervention do |form| %> %>
+<%# <%= form_with model: @intervention do |form| %>
 <%= form_with(model: @intervention, local: true, url: intervention_path) do |f| %>   
 <section id="contact text-center">
 <div class="container ">
@@ -7,8 +7,8 @@
 <section id="contact">
 <div class="container">
           <header class="text-center mb-60-1">
-          <h2>INTERVENTION</h2>
-          <p class="lead font-lato">Please enter intervention details and submit</p>
+          <h2 class= "text-danger">INTERVENTION</h2>
+          <p class="lead font-lato text-primary">Please fill out the form below with the intervention details and submit. Only: Customer, Building and report are required !</p>
           <hr />
           </header>
         <div class="row">                   
