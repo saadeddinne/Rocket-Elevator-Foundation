@@ -5,6 +5,13 @@ class InterventionController < ApplicationController
   end
 
 
+  def my_intervention
+         @interventions = Intervention.where(:author => current_user.id)
+         puts @interventions
+  end
+
+
+
     # Get buildings associated with the selected customer
     def get_building
       if params[:customer].present?
@@ -74,6 +81,46 @@ class InterventionController < ApplicationController
     def new
         @intervention = Intervention.new
     end
+
+    # the author is the crrent user
+    def author_intervention
+        @interventions = Intervention.where(:user_id => current_user.id)
+    end
+
+    def create 
+        @intervention = Intervention.new(intervention_params)
+        puts "********************************"     
+     
+       
+       @intervention.author = current_user.id
+       @intervention.employee_id = params[:employee]
+       @intervention.customer_id = params[:customer]
+       @intervention.building_id = params[:building]
+       @intervention.battery_id = params[:battery]
+       @intervention.column_id = params[:column]
+       @intervention.elevator_id = params[:elevator]
+       @intervention.result = "Incomplete"  #  Default value
+       @intervention.report = params[:report]
+       @intervention.status = "Pending"   # Default value
+
+        @intervention.save
+      
+        
+
+        respond_to do |f|
+            if @intervention.save  && user_signed_in?
+                f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
+            else
+                f.html { render :new }
+            end
+        end
+        
+    end
+
+
+
+
+
     def intervention_params
         params.permit( :employee_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :result, :report, :status)
     end

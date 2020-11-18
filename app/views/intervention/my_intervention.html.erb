@@ -1,0 +1,42 @@
+<section class="pt-30">
+  <div class="container" style="width: 90% !important;">
+    <div class="text-center">
+      <h1 class="fw-600 text-blue">My Interventions</h1>
+    </div>
+    <div>
+      <p id="notice"><%= notice %></p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Author</th>
+            <th scope="col">Employee</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Building</th>
+            <th scope="col">Battery</th>
+            <th scope="col">Column</th>
+            <th scope="col">Elevator</th>
+            <th scope="col">Report</th>
+            <th scope="col">Result</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @interventions.each do |int| %>
+            <tr>
+              <td><%= int.author %></td>
+              <td><%= int.employee_id %></td>
+              <td><%= int.customer_id %></td>
+              <td><%= int.building_id %></td>
+              <td><%= int.battery_id %></td>
+              <td><%= int.column_id %></td>
+              <td><%= int.elevator_id %></td>
+              <td><%= int.report %></td>
+              <td><%= int.result %></td>
+              <td><%= int.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -31,15 +31,16 @@ Rails.application.routes.draw do
 
   get 'my_quotes' => 'quotes#user_quotes', as: :my_quotes
   get 'my_leads' => 'leads#user_leads', as: :my_leads
+  get 'my_interventions' => 'intervention#my_intervention'
   match '/watson' => 'watson#speak', via: :get
 
-
+  # collection routes 
   resources :intervention do
-    get :get_building, on: :collection
-    get :get_battery, on: :collection
-    get :get_column, on: :collection
-    get :get_elevator, on: :collection
-   
-  end
+  get :get_building, on: :collection
+  get :get_battery, on: :collection
+  get :get_column, on: :collection
+  get :get_elevator, on: :collection
+  end 
+  
 
 end
