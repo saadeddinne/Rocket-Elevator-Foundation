@@ -1,7 +1,7 @@
 class Elevator < ApplicationRecord
   belongs_to :column
   before_update :twilio_sms
-  # before_update :slack
+  before_update :slack
 
 
 
@@ -16,40 +16,14 @@ class Elevator < ApplicationRecord
       @client = Twilio::REST::Client.new account_sid, auth_token
       message = @client.messages.create(
           body: "The elevator with Serial Number #{self.serial_number} require maintenance.",
-          # to: self.column.battery.building.technical_contact_phone,
-          to: "+15817772256",
-          from: "+15817772256")  
+          to: self.column.battery.building.technical_contact_phone,
+          # to: "+15817772256",
+          from: "+16316417194")  
       
       puts message.sid
       
     end
   end
-
-#   def twilio_message
-#     if self.elevator_status == "Intervention"
-
-#       puts "************************"
-#       puts self.column.battery.building.technical_contact_phone
-#       puts self.column.battery.building.technical_contact_full_name
-#       puts self.id
-#       puts self.serial_number
-#       puts self.column.battery.building.address.number_and_street
-#       puts self.column.battery.building.address.city
-#       puts self.column.battery.building.administrator_full_name
-#       puts self.column.battery.building.administrator_phone_number
-#       puts "****** end ******"
-      
-#         account_sid = ENV["twilio_account_sid"]
-#         auth_token = ENV["twilio_auth_token"]
-#         @client = Twilio::REST::Client.new account_sid, auth_token 
-#         @client.api.account.messages.create(
-#         from: "+15817772256",
-#         to: self.column.battery.building.technical_contact_phone,
-#         body: "Hi #{self.column.battery.building.technical_contact_full_name}, the elevator: #{self.id} with Serial Number: #{self.serial_number}, located at #{self.column.battery.building.address.number_and_street}, #{self.column.battery.building.address.city} require intervention. Please contact the administrator #{self.column.battery.building.administrator_full_name} on the phone #{self.column.battery.building.administrator_phone_number}.")
-
-      
-#     end
-# end
   
 
 
