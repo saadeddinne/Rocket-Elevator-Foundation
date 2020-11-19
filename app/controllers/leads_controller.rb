@@ -37,43 +37,43 @@ class LeadsController < ApplicationController
     end
 
     
-   def send_mails
-# #   send mail
+#    def send_mails
+# # #   send mail
 
-    #     # sendgrid sending 
-    puts "********************* variable ***********************"    
-    full_name = lead_params[:full_name]
-    puts  full_name
-    email = lead_params[:email]
-    puts email
-    project_name = lead_params[:project_name]
-    puts project_name
+#     #     # sendgrid sending 
+#     puts "********************* variable ***********************"    
+#     full_name = lead_params[:full_name]
+#     puts  full_name
+#     email = lead_params[:email]
+#     puts email
+#     project_name = lead_params[:project_name]
+#     puts project_name
    
-    puts "********************************************"
+#     puts "********************************************"
         
-    mail = Mail.new
-    mail.from = Email.new(email: 'rocketelevatorscorp@gmail.com')
-    personalization = Personalization.new
-    personalization.add_to(Email.new(email: email))
-    personalization.add_dynamic_template_data({
-      "fullName" => full_name,
-      "projectName" => project_name
-    })
-    mail.add_personalization(personalization)
-    mail.template_id = 'd-85f237599dfe4df8a0896aa0ad379983'
+#     mail = Mail.new
+#     mail.from = Email.new(email: 'rocketelevatorscorp@gmail.com')
+#     personalization = Personalization.new
+#     personalization.add_to(Email.new(email: email))
+#     personalization.add_dynamic_template_data({
+#       "fullName" => full_name,
+#       "projectName" => project_name
+#     })
+#     mail.add_personalization(personalization)
+#     mail.template_id = 'd-85f237599dfe4df8a0896aa0ad379983'
     
-    conf = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    begin
-        response = conf.client.mail._("send").post(request_body: mail.to_json)
-        puts response.status_code
-        puts response.body
-        puts response.parsed_body
-        puts response.headers
-    rescue Exception => e
-        puts e.message
-    end
-    #  end send mail
-   end
+#     conf = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+#     begin
+#         response = conf.client.mail._("send").post(request_body: mail.to_json)
+#         puts response.status_code
+#         puts response.body
+#         puts response.parsed_body
+#         puts response.headers
+#     rescue Exception => e
+#         puts e.message
+#     end
+#     #  end send mail
+#    end
 
 
 

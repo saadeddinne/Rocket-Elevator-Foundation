@@ -41,6 +41,7 @@ def create_employee randEmployeeCreation
         title: "CEO",
         
         is_employee: true,
+        is_admin: true,
         is_user: false
     )
     
@@ -104,6 +105,7 @@ def create_employee randEmployeeCreation
         title: "Captain",
     
         is_employee: true,
+        is_admin: true,
         is_user: false
     )
     
@@ -397,4 +399,5 @@ User.create(
 
     is_admin: true,
     is_user: false
+    
 )
