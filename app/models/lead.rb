@@ -18,8 +18,8 @@ class Lead < ApplicationRecord
 
     def new_lead_ticket
         client = ZendeskAPI::Client.new do |config|
-          config.url = 'https://rocketelevator1.zendesk.com/api/v2'
-          config.username = 'friminazaddi@gmail.com'
+          config.url = 'https://rocketelevators8100.zendesk.com/api/v2'
+          config.username = 'saadeddine.feki@gmail.com'
           config.token = ENV["zendesk_api"]
         end
   

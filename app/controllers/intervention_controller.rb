@@ -87,12 +87,18 @@ class InterventionController < ApplicationController
         @interventions = Intervention.where(:user_id => current_user.id)
     end
 
+
+
     def create 
         @intervention = Intervention.new(intervention_params)
         puts "********************************"     
      
        
        @intervention.author = current_user.id
+       firstname            = current_user.first_name
+       lastname             = current_user.last_name
+       adressbuilding       = Address.find(params[:building])
+       @company    = Customer.find(params[:customer]).company_name
        @intervention.employee_id = params[:employee]
        @intervention.customer_id = params[:customer]
        @intervention.building_id = params[:building]
@@ -102,11 +108,45 @@ class InterventionController < ApplicationController
        @intervention.result = "Incomplete"  #  Default value
        @intervention.report = params[:report]
        @intervention.status = "Pending"   # Default value
+       @intervention.save
 
-        @intervention.save
-      
-        
+    #    Zendesk Ticket creation
+        # 1. config
+       
+            client = ZendeskAPI::Client.new do |config|
+            config.url = 'https://rocketelevators8100.zendesk.com/api/v2'
+            config.username = 'saadeddine.feki@gmail.com'
+            config.token = ENV["zendesk_api"]
+            end 
+        # 2. intervention
+        if @intervention.employee_id != nil
+        @employee_name = Employee.find(params[:employee]).first_name
+        @employee_last = Employee.find(params[:employee]).last_name
+        signature = "#{@employee_name} #{@employee_last}"
+        else
+            signature = ""
+        end
 
+        ZendeskAPI::Ticket.create!(client, 
+            :subject => "Intervention ticket author:  #{@intervention.author}  
+            #{ firstname} #{lastname }",
+            :requester => {"name": @current_user.email},
+            :comment => { :value => "Author: [ID: #{@intervention.author}] #{ firstname} #{lastname }
+            The customer [ID: #{@intervention.customer_id}] name: #{@company}
+            Building [#{@intervention.building_id}] #{adressbuilding.number_and_street} #{adressbuilding.postal_code} #{adressbuilding.country}
+            Battery [#{@intervention.battery_id}]
+            Column [#{@intervention.column_id}]
+            Elevator [#{@intervention.elevator_id}] 
+            An intervention was created and associated to the employee : [#{@intervention.employee_id}]  #{signature}.
+            The intervention report : 
+            #{@intervention.report}
+           Sincerely yours"},
+            :submitter_id => @intervention.author,
+            :type => "question",
+            :priority => "urgent")
+
+
+    # end Zendesk   
         respond_to do |f|
             if @intervention.save  && user_signed_in?
                 f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
@@ -117,8 +157,12 @@ class InterventionController < ApplicationController
         
     end
 
+    # Creating a Ticket in ZenDesk
+  
+   
 
 
+    # end Zendesk section
 
 
     def intervention_params

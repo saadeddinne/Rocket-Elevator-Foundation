@@ -30,10 +30,10 @@ class Quote < ApplicationRecord
    
 
     client = ZendeskAPI::Client.new do |config|
-      config.url = 'https://rocketelevator1.zendesk.com/api/v2'
-      config.username = 'friminazaddi@gmail.com'
+      config.url = 'https://rocketelevators8100.zendesk.com/api/v2'
+      config.username = 'saadeddine.feki@gmail.com'
       config.token = ENV["zendesk_api"]
-    end
+      end 
 
     # This part create a ticket with a subject and the body, the body come from the comment at the top of the page depending on the type of building
 
