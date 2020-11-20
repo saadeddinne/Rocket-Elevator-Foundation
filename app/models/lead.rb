@@ -11,11 +11,10 @@ class Lead < ApplicationRecord
 
     mount_uploader :attachment, AttachmentUploader
 
-    # after_create :new_lead_ticket
+    after_create :new_lead_ticket
 
 
-    # ZENDESK SECTION FOR THE CONTACT FORM  
-
+    # ZENDESK SECTION FOR THE CONTACT FORM 
     def new_lead_ticket
         client = ZendeskAPI::Client.new do |config|
           config.url = 'https://rocketelevators8100.zendesk.com/api/v2'
@@ -34,8 +33,6 @@ class Lead < ApplicationRecord
           "name": self.full_name,
           "email": self.email
         },
-
-
         # This is the priority for viewing tickets, if urgent, tickets will appear at the top of the list
         :priority => "normal",
         :type => "Question"

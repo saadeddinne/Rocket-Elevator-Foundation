@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
 
   get 'intervention/index'
-  get 'geolocation/index'
+  # get 'geolocation/index'
 
   get 'intervention', to: 'intervention#index'
- 
+  get 'geolocation',  to: 'geolocation#index'
 
   mount RailsAdmin::Engine => '/backoffice', as: 'rails_admin'
   

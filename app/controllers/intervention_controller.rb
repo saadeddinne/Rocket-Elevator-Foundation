@@ -147,14 +147,13 @@ class InterventionController < ApplicationController
 
 
     # end Zendesk   
-        respond_to do |f|
-            if verify_recaptcha(model: @intervention) && @intervention.save  && user_signed_in?
+        respond_to do |f|            
+            if @intervention.save  && user_signed_in?
                 f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
             else
                 f.html { render :new }
             end
-        end
-        
+        end        
     end
     def intervention_params
         params.permit( :employee_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :result, :report, :status)

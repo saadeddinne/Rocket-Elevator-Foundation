@@ -1,11 +1,11 @@
 class Quote < ApplicationRecord
   belongs_to :user, optional: true
-  # after_create :new_quote_ticket
-  #after_save: :save_to_dwh
+  after_create :new_quote_ticket
+  after_save :save_to_dwh
 
-#def save_to_dwh
-#  FactQuote.create!({quote_id: self.id})
-#end
+def save_to_dwh
+ FactQuote.create!({quote_id: self.id})
+end
 
 
   # When a user enters data in the submission page, this information is sent to the zendesk application depending on the type of building

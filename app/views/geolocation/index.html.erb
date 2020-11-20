@@ -41,9 +41,9 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-         mapInitialisation();
-    })
+     document.addEventListener('DOMContentLoaded', (event) => {            
+          mapInitialisation();})
+       
 
     function mapOptions(){
         return {
@@ -121,4 +121,8 @@
     }
     
 </script>
-
+<%= javascript_tag do %>
+  if(window.location.href.substr(-2) !== "?r") {
+    window.location = window.location.href + "?r";
+  }
+<% end %>
