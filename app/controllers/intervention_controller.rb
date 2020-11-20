@@ -146,15 +146,21 @@ class InterventionController < ApplicationController
             :priority => "urgent")
 
 
-    # end Zendesk   
+    # end Zendesk  
+    # if verify_recaptcha(model: @intervention) 
         respond_to do |f|            
-            if @intervention.save  && user_signed_in?
-                f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
-            else
-                f.html { render :new }
-            end
-        end        
-    end
+                if @intervention.save  && user_signed_in?
+                    f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
+                else
+                    f.html { render :new }
+                end
+            end        
+        end
+    # else
+    #     redirect_to intervention_path
+    # end
+
+
     def intervention_params
         params.permit( :employee_id, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :result, :report, :status)
     end
