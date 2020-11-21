@@ -26,13 +26,17 @@ This app implements APIs in order to offer great user experience.
 - user : `mathieu.houde@codeboxx.biz`
 - password : `MathieuHoude`
 
-- **[Saad eddine](https://github.com/saadeddinne)**
+<hr>
 
-### The Repo : [Rocket_Elevators_API](https://github.com/CptnWookie/Rocket_Elevators_API)
+**[Saad eddine](https://github.com/saadeddinne)**
+
+<hr>
+
+### The Repo : [Rocket_Elevators_API](https://github.com/saadeddinne/Rocket-Elevator-Foundation)
 
 ## API Google Maps
 
-- [Google Maps](https://github.com/saadeddinne/Rocket-Elevator-Foundation)
+- [Google Maps](https://github.com/apneadiving/Google-Maps-for-Rails)
 - [geocoder](https://github.com/alexreisner/geocoder)
   The Api is used to allow administrators of the Back-office to geolocate on
   a map, every client’s buildings and display statistics (Admin only).
