@@ -94,6 +94,7 @@ class InterventionController < ApplicationController
         puts "********************************"     
      
        
+
        @intervention.author = current_user.id
        firstname            = current_user.first_name
        lastname             = current_user.last_name
@@ -109,6 +110,7 @@ class InterventionController < ApplicationController
        @intervention.report = params[:report]
        @intervention.status = "Pending"   # Default value
        @intervention.save
+       
 
     #    Zendesk Ticket creation
         # 1. config
@@ -147,18 +149,20 @@ class InterventionController < ApplicationController
 
 
     # end Zendesk  
-    # if verify_recaptcha(model: @intervention) 
+    if verify_recaptcha(model: @intervention) 
         respond_to do |f|            
                 if @intervention.save  && user_signed_in?
                     f.html { redirect_to my_interventions_path, notice: 'Your intervention has been successfully register !' }          
                 else
                     f.html { render :new }
                 end
-            end        
+            end 
+        else
+            redirect_to intervention_path, flash: { error: "Please check Captcha !" }
+              
         end
-    # else
-    #     redirect_to intervention_path
-    # end
+          
+end
 
 
     def intervention_params

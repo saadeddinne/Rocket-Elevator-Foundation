@@ -42,7 +42,7 @@
       <%# Buildings: Step 2  %>  
       <div class="col-md-8 building">
       <%= f.label :"building*" %>
-      <%= f.select(:building, Building.all.collect {|t| [t.id, t.customer_id, t.administrator_full_name ]}, {prompt: "id"},  {class: 'form-control'}) %>
+      <%= f.select(:building, Building.all.collect {|t| [t.id, t.customer_id, t.administrator_full_name ]}, {prompt: "id"},  {class: 'form-control'})%>
       </div>
     </div>
     <div class="row" style="margin-left: 1px">
