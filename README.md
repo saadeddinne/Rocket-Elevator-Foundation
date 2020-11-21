@@ -1,6 +1,14 @@
 # Rocket Elevators API
 
-## Week-7, Team Project Description
+## Week-9, Project Description
+
+This week we implement:
+
+- A new form to formulate the interventions (responsive)
+- The creation of a new table : interventions
+- Saving the request for intervention in the database
+- Sending a service ticket to ZenDesk
+- The addition of an API, implemented in c#, request that returns new interventions requests
 
 This app implements APIs in order to offer great user experience.
 
@@ -15,16 +23,8 @@ This app implements APIs in order to offer great user experience.
 
 **Here is the information you must enter in the sign in page to access the BackOffice :**
 
-- user : `admin@admin.com`
-- password : `admin123`
-
-## Members of the team
-
-- **[Alexandre Leblanc](https://github.com/CptnWookie)**
-
-- **[Frimina Zaddi](https://github.com/frimina)**
-
-- **[Rafaela_Schwarz](https://github.com/rafa-3111)**
+- user : `mathieu.houde@codeboxx.biz`
+- password : `MathieuHoude`
 
 - **[Saad eddine](https://github.com/saadeddinne)**
 
@@ -32,7 +32,7 @@ This app implements APIs in order to offer great user experience.
 
 ## API Google Maps
 
-- [Google Maps](https://github.com/apneadiving/Google-Maps-for-Rails)
+- [Google Maps](https://github.com/saadeddinne/Rocket-Elevator-Foundation)
 - [geocoder](https://github.com/alexreisner/geocoder)
   The Api is used to allow administrators of the Back-office to geolocate on
   a map, every client’s buildings and display statistics (Admin only).
@@ -44,7 +44,6 @@ This app implements APIs in order to offer great user experience.
   3. to display statics click on the markers
 ```
 
-
 ## API Twilio
 
 ```sh
@@ -53,15 +52,16 @@ This app implements APIs in order to offer great user experience.
   3. Select the elevator, the column, the battery, the building and change the technician phone to your phone number
   4. Go back to the elevator and change the status to "Intervention"
   5. You'll then receive a sms that require the maintenance
-  ```
+```
+
 I added the phone number for the test, so you won't have any problems.
 
 ## API Slack
 
 ```sh
-  1. Open the Slack app and open the chanel 
+  1. Open the Slack app and open the chanel
   2. Go to Rocket Elevators group and select elevator_operations
-  3. Go to the backoffice, select the elevator. 
+  3. Go to the backoffice, select the elevator.
   4. Change elevator status
   5. You'll see a notife in slack about the change
 ```
@@ -74,7 +74,7 @@ I added the phone number for the test, so you won't have any problems.
 
 ```sh
   1. Sign In
-  2. On the left panel, select Customers 
+  2. On the left panel, select Customers
   3. Select Add New
   4. Select the User who needs to be converted
   5. Click on Save after filling out the form.
@@ -86,12 +86,10 @@ I added the phone number for the test, so you won't have any problems.
   This Api will be triggered if a contact completes the "Contact Us" form to send customized transactional thank-you email.
   In order to send dynamic content, sendgrid use a JSON blob containing the dynamic data and a html template.
 
-
 ## API Recaptcha
 
-  - [Recaptcha](https://github.com/ambethia/recaptcha)
-    reCAPTCHA uses an advanced risk analysis engine and adaptive challenges to keep malicious software from engaging in abusive activities on your website.
-
+- [Recaptcha](https://github.com/ambethia/recaptcha)
+  reCAPTCHA uses an advanced risk analysis engine and adaptive challenges to keep malicious software from engaging in abusive activities on your website.
 
 ## API IBM Watson
 
@@ -100,18 +98,17 @@ I added the phone number for the test, so you won't have any problems.
 
 ```sh
   1. Sign In
-  2. Hit the play button on the audio player right under Dashboard 
+  2. Hit the play button on the audio player right under Dashboard
   3. The audio file will be generated based on the assets of the current user and will be playable.
 ```
 
 ## API ZenDesk
 
 ```sh
-  1. Open ZenDesk and connect with the username and password 
-  2. Open the dashboard 
+  1. Open ZenDesk and connect with the username and password
+  2. Open the dashboard
   3. When you create a quote or a contact us form, this information will be sent to the dashboard
 ```
-
 
 ## Utils
 

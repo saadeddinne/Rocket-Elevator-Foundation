@@ -39,12 +39,14 @@
             </li>
             <li><!-- CONTACT -->
               <%= link_to 'CONTACT', root_path(anchor: "contact"), 'data-turbolinks': false %>
-            </li>
-            <% if can? :read, Quote %>
-
-             <li><!-- BACKOFFICE -->
+              </li>
+              <% if user_signed_in? %>
+               <li>
                 <%= link_to 'INTERVENTION', intervention_path %>
               </li>
+                <% end %>
+            <% if can? :read, Quote %>
+
               <li><!-- BACKOFFICE -->
                 <%= link_to 'BACKOFFICE', rails_admin_path %>
               </li>
