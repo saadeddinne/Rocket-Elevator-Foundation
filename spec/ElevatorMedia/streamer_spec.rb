@@ -3,9 +3,8 @@ require 'ElevatorMedia/streamer'
 
 describe ElevatorMedia::Streamer do
 
-    def getContent
-
+    it "should return true: First test" do
+        expect(true).to be true        
     end
-
 end
 
