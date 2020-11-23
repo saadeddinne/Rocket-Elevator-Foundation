@@ -144,6 +144,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dropbox-api (0.4.2)
@@ -159,6 +160,11 @@ GEM
     eventmachine (1.2.7-x64-mingw32)
     eventmachine (1.2.7-x86-mingw32)
     execjs (2.7.0)
+    factory_girl (4.9.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.9.0)
+      factory_girl (~> 4.9.0)
+      railties (>= 3.0.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     faraday (1.0.0)
@@ -364,6 +370,23 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec-core (3.9.3)
+      rspec-support (~> 3.9.3)
+    rspec-expectations (3.9.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-rails (3.9.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.4)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     ruby_dep (1.5.0)
@@ -501,10 +524,12 @@ DEPENDENCIES
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 4.2)
+  database_cleaner
   database_cleaner-active_record
   devise
   dropbox-api
   dropbox_api
+  factory_girl_rails
   faker (~> 2.14)
   figaro
   geocoder
@@ -524,6 +549,7 @@ DEPENDENCIES
   rails_admin_material
   rails_admin_rollincode (~> 1.0)
   recaptcha
+  rspec-rails (~> 3.5)
   rvm1-capistrano3
   sass-rails (~> 5.0)
   selenium-webdriver

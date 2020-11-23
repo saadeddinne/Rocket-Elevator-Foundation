@@ -66,8 +66,17 @@ gem 'bootsnap', '>= 1.1.0'
 
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  #byebug allows for step-through debugging by placing byebug anywhere in the app.
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # rspec-rails is the testing framework.
+  gem 'rspec-rails', '~> 3.5'
+  # factory_girl_rails replaces Rails fixtures for generating data to use in the tests.
+  gem 'factory_girl_rails'
+  # capybara provides helper methods that make integration testing easier.
+    gem 'capybara', '>= 2.15'
+  # database_cleaner allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -108,8 +117,7 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
