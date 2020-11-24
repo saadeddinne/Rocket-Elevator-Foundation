@@ -1,10 +1,8 @@
-require 'ElevatorMedia/streamer'
+require 'rails_helper'
+require 'elevator_media/streamer.rb'
 
 
-    
-describe ElevatorMedia::Streamer do
-
-    
+describe ElevatorMedia::Streamer do    
     before do
         @streamer = ElevatorMedia::Streamer.new
     end
@@ -27,13 +25,24 @@ describe ElevatorMedia::Streamer do
         end
     end
     # Test first data contenu should be returned by getContent
+    # Test html returned by Forecast
     context "should return html: forcast" do
         it "return valid HTML" do
-            html = @streamer.getContent()
+            html = @streamer.getContent("6325494")
             puts html
             expect(html).to include('div')
             # expect(html).to have_tag('div')
         end
     end
+    # Test to verify if the returned API not 404
+    context "what if getcontext return 'nil' with a wrong city id" do
+        it "handle 404 result from API" do
+            html = @streamer.getContent("632549")
+            puts html
+            expect(html).to eq("ERROR 404")
+            # expect(html).to have_tag('div')
+        end
+    end
+    
 end
 
