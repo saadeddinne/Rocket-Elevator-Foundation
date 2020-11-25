@@ -59,5 +59,25 @@ describe ElevatorMedia::Streamer do
             @streamer.getContent("632549", "something")      
         end
     end
+    # Test getCovid if connect with API
+    context "Test covid return Summary if 200 ok" do
+        it "getCovidStats should return HTML" do
+            html = @streamer.getContent(@quebec, "Covid")
+            puts html
+            expect(html).to include('div')
+            # expect(html).to have_tag('div')
+        end
+    end
+    # Test getCovid if connect with API failure
+    context "Test covid return Summary if 200 ok" do
+        it "getCovidStats should return HTML" do
+            html = @streamer.getContent(@quebec, "Covid")
+            puts html
+            # test is ok
+            # expect(html).to eq("ERROR!!!")
+            expect(html).to_not eq(nil)
+            expect(html).to be_a(String)
+        end
+    end
 end
 
