@@ -14,29 +14,6 @@ module ElevatorMedia
         # Version2:: get media content specified by argument: forecast or covid
         def getContent(city, media) 
            
-            
-            if (media == "Covid") 
-            covid = getCovidStats() 
-            html = "
-            <html><body>
-                <div class='covid'> 
-                    <h3>Latest update</h3>: #{covid.first["latest_date"]},<h3>  
-                    <h3>Total hospitalizations</h3>: #{covid.first["total_hospitalizations"]},  
-                    <h3>Total recoveries</h3>: #{covid.first["total_recoveries"]},  
-                    <h3>Total fatalities</h3>: #{covid.first["total_fatalities"]},  
-                </div>
-            </body></html>"
-            return html
-            end
-            if (media == "Exchange") 
-                covid = getCovidStats() 
-                html = "
-                <html><body>
-                    <div class='covid'>  
-                    </div>
-                </body></html>"
-                return html
-                end
             if (media == "Forecast") 
                 weather =  self.getForecast(city)
                 if weather["cod"] == '404'
@@ -53,9 +30,38 @@ module ElevatorMedia
                         </div>
                     </body></html>"
                 end
-            else 
+            
+            elsif (media == "Covid") 
+            covid = getCovidStats() 
+            html = "
+            <html><body>
+                <div class='covid'> 
+                    <h3>Latest update</h3>: #{covid.first["latest_date"]},<h3>  
+                    <h3>Total hospitalizations</h3>: #{covid.first["total_hospitalizations"]},  
+                    <h3>Total recoveries</h3>: #{covid.first["total_recoveries"]},  
+                    <h3>Total fatalities</h3>: #{covid.first["total_fatalities"]},  
+                </div>
+            </body></html>"
+           
+            
+            elsif (media == "Exchange") 
+                item = getExchange() 
+                time = item["time"].to_datetime            
+                html = "
+                <html><body>
+                    <div class='Exchange'>
+                         <h1>Exchange: USD to CAD</h1>
+                         <ul>
+                            <li>Last update : #{time.strftime('%d of %B, %Y AT %I:%M %p')  }</li>
+                            <li>Amount: #{item["amount"]}</li>
+                         </ul>
+                    </div>
+                </body></html>"
+              
+                else 
                 html = "Undefined media type !"
-            end
+                end              
+         
             return html
         end
         # get weather by City ID and return json content
@@ -82,7 +88,23 @@ module ElevatorMedia
         end
         # return Curency exchange
         def getExchange
-           return "Hello"
+            url = URI("https://currency13.p.rapidapi.com/convert/1/USD/CAD")
+
+            http = Net::HTTP.new(url.host, url.port)
+            http.use_ssl = true
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+            
+            request = Net::HTTP::Get.new(url)
+            request["x-rapidapi-key"] = '8def33723emshcd4f9bc61ab02a0p1a8c2bjsn88e772b27530'
+            request["x-rapidapi-host"] = 'currency13.p.rapidapi.com'
+            
+            response = http.request(request)
+            @output  = JSON.parse(response.body)
+            if @output.empty?
+                return "Erorr !!"
+            else
+                return @output
+            end
         end
     end
 end

@@ -82,9 +82,13 @@ describe ElevatorMedia::Streamer do
      # Test the response of the method : getExchange
      context "getExchange Test: Check the call of the method" do
         it "Test the call of the method getExchange ?" do
-            html = @streamer.getContent(@quebec, "Exchange")
+            # html = @streamer.getContent(@quebec, "Exchange")
+            html = @streamer.getContent(@quebec, "Exchang")
             puts html
             expect(@streamer).to respond_to(:getContent)  
+            expect(html).to eq("Undefined media type !")
+            expect(html).to be_a(String)
+            # expect(html).to include('div')
                  
         end
     end
