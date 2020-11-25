@@ -74,7 +74,7 @@ group :development, :test do
   # rspec-rails is the testing framework.
   gem 'rspec-rails', '~> 3.5'
   # factory_girl_rails replaces Rails fixtures for generating data to use in the tests.
-  gem 'factory_girl_rails'
+   gem 'factory_girl_rails'
   # capybara provides helper methods that make integration testing easier.
     gem 'capybara', '>= 2.15'
   # database_cleaner allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).

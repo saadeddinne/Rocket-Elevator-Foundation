@@ -17,7 +17,7 @@ module ElevatorMedia
             if (media == "Forecast") 
                 weather =  self.getForecast(city)
                 if weather["cod"] == '404'
-                    html = "ERROR 404"
+                    html = "ERROR 404 failure to connect to the API"
                 else
                     html = "
                     <html><body>
@@ -32,7 +32,10 @@ module ElevatorMedia
                 end
             
             elsif (media == "Covid") 
-            covid = getCovidStats() 
+            covid = getCovidStats()
+            if covid == "ERROR!!!"
+                html = "ERROR 404 failure to connect to the API"
+            else 
             html = "
             <html><body>
                 <div class='covid'> 
@@ -42,7 +45,7 @@ module ElevatorMedia
                     <h3>Total fatalities</h3>: #{covid.first["total_fatalities"]},  
                 </div>
             </body></html>"
-           
+            end
             
             elsif (media == "Exchange") 
                 item = getExchange() 
@@ -50,11 +53,11 @@ module ElevatorMedia
                 html = "
                 <html><body>
                     <div class='Exchange'>
-                         <h1>Exchange: USD to CAD</h1>
-                         <ul>
-                            <li>Last update : #{time.strftime('%d of %B, %Y AT %I:%M %p')  }</li>
-                            <li>Amount: #{item["amount"]}</li>
-                         </ul>
+                        <h1>Exchange: USD to CAD</h1>
+                        <ul>
+                        <li>Last update : #{time.strftime('%d of %B, %Y AT %I:%M %p')  }</li>
+                        <li>Amount: #{item["amount"]}</li>
+                        </ul>
                     </div>
                 </body></html>"
               
@@ -72,7 +75,7 @@ module ElevatorMedia
         end 
        
         # Returns a summary of total cases and fatalities in Canada.
-        def getCovidStats 
+        def getCovidStats()
             url = URI("https://api.covid19tracker.ca/summary")
             https = Net::HTTP.new(url.host, url.port);
             https.use_ssl = true
@@ -83,7 +86,7 @@ module ElevatorMedia
                 resultdata = result["data"]
                 return resultdata
               else
-                puts "ERROR!!!"
+                return "ERROR!!!"
               end  
         end
         # return Curency exchange

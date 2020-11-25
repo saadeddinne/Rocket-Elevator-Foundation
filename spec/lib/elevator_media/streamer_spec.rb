@@ -36,12 +36,12 @@ describe ElevatorMedia::Streamer do
         end
     end
     # Test to verify if the returned API not 404
-    context "what if getcontext return 'nil' with a wrong city id" do
-        it "Forecast: handle 404 result from API" do
+    context "what if getcontext return 'nil' with a wrong city id." do
+        it "Forecast: handle 404 result from API OpenWeather." do
             # Call with wrong city ID
             html = @streamer.getContent("632549", "Forecast")
             puts html
-            expect(html).to eq("ERROR 404")
+            expect(html).to eq("ERROR 404 failure to connect to the API")
             # expect(html).to have_tag('div')
         end
     end
@@ -52,6 +52,7 @@ describe ElevatorMedia::Streamer do
             @streamer.getContent("632549", "Covid")      
         end
     end
+   
      # Call getContent with wrong argument
      context "getContent: Handle undifined call" do
         it "Test the call of the method with wrong argument ?" do
@@ -59,16 +60,17 @@ describe ElevatorMedia::Streamer do
             @streamer.getContent("632549", "something")      
         end
     end
-    # Test getCovid if connect with API
+    # Test API https://api.covid19tracker.ca
     context "Test covid return Summary if 200 ok" do
         it "getCovidStats should return HTML" do
             html = @streamer.getContent(@quebec, "Covid")
+            puts html
             expect(html).to include('div')
             # expect(html).to have_tag('div')
         end
     end
     # Test getCovid if connect with API (simulate failure)
-    context "Test covid return Summary if 200 ok" do
+    context "Test getCovid return Summary if 200 ok" do
         it "getCovidStats should return HTML" do
             html = @streamer.getContent(@quebec, "Covid")
             # test is ok
