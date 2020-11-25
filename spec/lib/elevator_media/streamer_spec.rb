@@ -52,6 +52,12 @@ describe ElevatorMedia::Streamer do
             @streamer.getContent("632549", "Covid")      
         end
     end
-   
+     # Call getContent with wrong argument
+     context "getContent: Handle undifined call" do
+        it "Test the call of the method with wrong argument ?" do
+            expect(@streamer).to respond_to(:getCovidStats)  
+            @streamer.getContent("632549", "something")      
+        end
+    end
 end
 
