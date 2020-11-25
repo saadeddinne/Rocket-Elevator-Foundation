@@ -14,9 +14,10 @@ module ElevatorMedia
         # Version2:: get media content specified by argument: forecast or covid
         def getContent(city, media) 
            
+            
             if (media == "Covid") 
             covid = getCovidStats() 
-            html =  html = "
+            html = "
             <html><body>
                 <div class='covid'> 
                     <h3>Latest update</h3>: #{covid.first["latest_date"]},<h3>  
@@ -27,6 +28,15 @@ module ElevatorMedia
             </body></html>"
             return html
             end
+            if (media == "Exchange") 
+                covid = getCovidStats() 
+                html = "
+                <html><body>
+                    <div class='covid'>  
+                    </div>
+                </body></html>"
+                return html
+                end
             if (media == "Forecast") 
                 weather =  self.getForecast(city)
                 if weather["cod"] == '404'
@@ -43,9 +53,6 @@ module ElevatorMedia
                         </div>
                     </body></html>"
                 end
-            if (media ==  "getExchange")
-                getExchange()
-            end
             else 
                 html = "Undefined media type !"
             end
@@ -74,6 +81,8 @@ module ElevatorMedia
               end  
         end
         # return Curency exchange
-        
+        def getExchange
+           return "Hello"
+        end
     end
 end

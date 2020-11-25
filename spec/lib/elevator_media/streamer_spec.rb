@@ -79,5 +79,16 @@ describe ElevatorMedia::Streamer do
             expect(html).to be_a(String)
         end
     end
+     # Test the response of the method : getExchange
+     context "getExchange Test: Check the call of the method" do
+        it "Test the call of the method getExchange ?" do
+            html = @streamer.getContent(@quebec, "Exchange")
+            puts html
+            expect(@streamer).to respond_to(:getContent)  
+                 
+        end
+    end
+    
+  
 end
 
