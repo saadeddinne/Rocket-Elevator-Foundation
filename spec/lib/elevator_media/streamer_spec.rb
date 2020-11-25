@@ -27,8 +27,8 @@ describe ElevatorMedia::Streamer do
     end
     # Test: getContent should return data
     # Test: Forecast should return data
-    context "should return html: forcast" do
-        it "return valid HTML" do
+    context "should return html: forecast" do
+        it "Forecast should return valid HTML" do
             html = @streamer.getContent(@quebec, "Forecast")
             puts html
             expect(html).to include('div')
@@ -37,7 +37,7 @@ describe ElevatorMedia::Streamer do
     end
     # Test to verify if the returned API not 404
     context "what if getcontext return 'nil' with a wrong city id" do
-        it "handle 404 result from API" do
+        it "Forecast: handle 404 result from API" do
             # Call with wrong city ID
             html = @streamer.getContent("632549", "Forecast")
             puts html
@@ -63,16 +63,14 @@ describe ElevatorMedia::Streamer do
     context "Test covid return Summary if 200 ok" do
         it "getCovidStats should return HTML" do
             html = @streamer.getContent(@quebec, "Covid")
-            puts html
             expect(html).to include('div')
             # expect(html).to have_tag('div')
         end
     end
-    # Test getCovid if connect with API failure
+    # Test getCovid if connect with API (simulate failure)
     context "Test covid return Summary if 200 ok" do
         it "getCovidStats should return HTML" do
             html = @streamer.getContent(@quebec, "Covid")
-            puts html
             # test is ok
             # expect(html).to eq("ERROR!!!")
             expect(html).to_not eq(nil)
@@ -82,13 +80,22 @@ describe ElevatorMedia::Streamer do
      # Test the response of the method : getExchange
      context "getExchange Test: Check the call of the method" do
         it "Test the call of the method getExchange ?" do
-            # html = @streamer.getContent(@quebec, "Exchange")
-            html = @streamer.getContent(@quebec, "Exchang")
+            html = @streamer.getContent(@quebec, "Exchange")
             puts html
             expect(@streamer).to respond_to(:getContent)  
-            expect(html).to eq("Undefined media type !")
+            expect(html).to_not eq(nil)
             expect(html).to be_a(String)
-            # expect(html).to include('div')
+            expect(html).to include('div')
+                 
+        end
+    end
+     # Test the response of the method : getContent with bad argument
+     context "getContent Test: Handle Bad argument" do
+        it "Test getcontent with bad argument" do
+            # test is ok  expect(@treamer).to 
+            html = @streamer.getContent(@quebec, "very bad argument!")
+            puts html
+            expect(@streamer).to_not receive(:getContent).with(@quebec, "very bad argument!") 
                  
         end
     end
