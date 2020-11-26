@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 gem 'geocoder'
 gem 'openssl'
- gem "factory_bot_rails"
+gem 'factory_bot_rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use mysql as the database for Active Record

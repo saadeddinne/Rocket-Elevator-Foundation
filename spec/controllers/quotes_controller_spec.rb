@@ -1,8 +1,13 @@
 require 'rails_helper'
 RSpec.describe QuotesController, type: :controller do
-        describe "Test NEW method with valid attributes " do
-            it "Should return true: no missing attributes" do
-                get :create
+
+    before do
+        @quote = Quote.new       
+    end
+        
+    context "Quote controller testing:" do
+        it "Should return true: no missing attributes" do    
+            puts " Quote with valid attributes: return True"          
                 quote = Quote.new(
                     user_id: 14,
                     apartments: 184,
@@ -22,7 +27,41 @@ RSpec.describe QuotesController, type: :controller do
                     ).save
                 expect(quote).to eq(true)
             end
-      end
+        end
+
+        # no change in the Quote model expected 
+        context "Quote controller testing: " do
+            it "Should return false: missing attributes " do 
+                puts " Quote with invalid attributes: return False"           
+                    quote = Quote.new(
+                        # user_id: 14, missing
+                        apartments: 184,
+                        floors: 104,
+                        basements: 4,
+                        businesses: 4,
+                        # elevator_shafts: 7, missing
+                        parking_spaces: 104,
+                        occupants: 1004,
+                        opening_hours: 24,
+                        product_line: "Roma",
+                        install_fee: 1000,
+                        total_price: 100000,
+                        unit_price: 1999,
+                        elevator_number: 45566789,
+                        building_type: "commercial"
+                        ).save
+                    expect{quote}.to_not change(Quote, :count)
+                end
+            end 
+
+    context " Quote without User id (after log in)" do
+        it "after login if user id is missinge should return false" do
+            @quote.user_id = nil
+            @quote.save
+            expect(@quote).to_not eq(true)
+        end
+    end
+
 end
 
   
