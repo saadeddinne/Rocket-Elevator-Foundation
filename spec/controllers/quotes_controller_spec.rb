@@ -61,6 +61,17 @@ RSpec.describe QuotesController, type: :controller do
             expect(@quote).to_not eq(true)
         end
     end
+    # describe "feature", :type => :feature do
+
+    #     it "redirects to the quotes list" do
+    #         quote = Quote.create!
+    #         visit '/my_quotes'
+    #         fill_in 'Email', with: 'admin@admin.com'
+    #         fill_in 'Password', with: 'admin123' do
+    #         expect(page).to have_text('MY QUOTES')
+    #       end
+    #     end
+    # end
 
 end
 
