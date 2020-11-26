@@ -61,17 +61,31 @@ RSpec.describe QuotesController, type: :controller do
             expect(@quote).to_not eq(true)
         end
     end
-    # describe "feature", :type => :feature do
+    context "Test the HTTP response Quote controller " do
 
-    #     it "redirects to the quotes list" do
-    #         quote = Quote.create!
-    #         visit '/my_quotes'
-    #         fill_in 'Email', with: 'admin@admin.com'
-    #         fill_in 'Password', with: 'admin123' do
-    #         expect(page).to have_text('MY QUOTES')
-    #       end
-    #     end
-    # end
+        it "should retur 200 as response" do
+            confg =  {
+                user_id: 14,
+                apartments: 184,
+                floors: 104,
+                basements: 4,
+                businesses: 4,
+                elevator_shafts: 7,
+                parking_spaces: 104,
+                occupants: 1004,
+                opening_hours: 24,
+                product_line: "Roma",
+                install_fee: 1000,
+                total_price: 100000,
+                unit_price: 1999,
+                elevator_number: 45566789,
+                building_type: "commercial"
+                }
+                post(:create, params: confg)
+                # The HTTP response status code 302 Found is a common way of performing URL redirection. (devise : need to be logged)
+                expect(response.code).to eq "302"
+        end
+    end
 
 end
 

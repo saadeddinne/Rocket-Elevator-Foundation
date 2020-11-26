@@ -42,5 +42,25 @@ RSpec.describe InterventionController, type: :controller do
                               status: "pending").save
                               expect{intervention}.to_not change(Intervention, :count)
                             end
-                          end        
+                          end  
+                          
+          context "Test the HTTP response intervention controller " do
+              it "should retur 200 as response" do
+                                  confg  =  {
+                                  building_id: 109,
+                                  battery_id: 1234567,
+                                  column_id:  90787,
+                                  elevator_id: 234576,
+                                  employee_id: 190,
+                                  start_intervention: "2009-04-27 00:43:58",
+                                  end_intervention: "2009-04-27 00:43:58",
+                                  result: "InComplete",
+                                  report: " bla bla bla",
+                                  status: "pending"
+                                    }
+                                    post(:create, params: confg)
+                                    # The HTTP response status code 302 Found is a common way of performing URL redirection. (devise : need to be logged)
+                                    expect(response.code).to eq "302"
+                            end
+                        end
             end
