@@ -62,7 +62,7 @@ RSpec.describe QuotesController, type: :controller do
         end
     end
     context "Test the HTTP response Quote controller " do
-
+        render_views
         it "should retur 200 as response" do
             confg =  {
                 user_id: 14,
@@ -82,7 +82,8 @@ RSpec.describe QuotesController, type: :controller do
                 building_type: "commercial"
                 }
                 post(:create, params: confg)
-                # The HTTP response status code 302 Found is a common way of performing URL redirection. (devise : need to be logged)
+                # The HTTP response status code 302 Found is a common way of performing URL redirection. (admin rails : need to be logged)
+               
                 expect(response.code).to eq "302"
         end
     end

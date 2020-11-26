@@ -2,8 +2,8 @@ require 'open_weather'
 require "uri"
 require "net/http"
 require 'openssl'
-puts "before app: #{ENV["OPEN_WEATHER_KEY"].inspect}"
 require "json"
+puts "---- before app: please check the API keys ! -----"
 
 module ElevatorMedia
     class Streamer
@@ -15,23 +15,7 @@ module ElevatorMedia
         def getContent(city, media) 
           
             if (media == "Forecast") 
-                climat = weatherAlex()
-                desc = climat.first["weather"]["description"]
-                tmp = climat.first["temp"]
-                sun = climat.first["sunset"]["description"]
-
-                html = "
-                <html><body>
-                    <div>
-                   Weather: #{desc},
-                   Temp: #{tmp},
-                   sunset: #{sun},
-                    </div>
-                    </html></body> "
-                    puts html
-
-              
-                weather =  self.getForecast(city)
+                 weather =  self.getForecast(city)
                 if weather["cod"] == '404'
                     html = "ERROR 404 failure to connect to the API"
                 else
@@ -109,7 +93,7 @@ module ElevatorMedia
             http.use_ssl = true
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE            
             request = Net::HTTP::Get.new(url)
-            request["x-rapidapi-key"] = '8def33723emshcd4f9bc61ab02a0p1a8c2bjsn88e772b27530'
+            request["x-rapidapi-key"] = ENV["EXCHANGE_KEY"]
             request["x-rapidapi-host"] = 'currency13.p.rapidapi.com'            
             response = http.request(request)
             @output  = JSON.parse(response.body)
@@ -118,31 +102,6 @@ module ElevatorMedia
             else
                 return @output
             end
-        end
-
-        
-    def weatherAlex
-       
-
-        url = URI("https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=-71.254028&lat=46.829853&units=M&lang=en")
-
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        
-        request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-key"] = '8def33723emshcd4f9bc61ab02a0p1a8c2bjsn88e772b27530'
-        request["x-rapidapi-host"] = 'weatherbit-v1-mashape.p.rapidapi.com'
-        
-        response = http.request(request)
-        if response.code == "200"
-            result = JSON.parse(response.body)
-            resultdata = result["data"]
-            return resultdata
-          else
-            return "ERROR!!!"
-          end 
-    end
-    # ---------------------------
+        end  
     end
 end
