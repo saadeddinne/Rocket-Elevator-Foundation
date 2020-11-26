@@ -23,6 +23,24 @@ RSpec.describe InterventionController, type: :controller do
                   expect(intervention).to eq(true)
                 end
               end
-         
-
+              describe "Intervention Controller: failure scenario" do
+                it "Should not create a new intervention and return False" do
+                  puts "Should not create a new intervention and return False: missing attributes" 
+                  
+                  intervention = Intervention.new(
+                              # author: 104, missing field
+                              # customer_id: 102,
+                              building_id: 109,
+                              battery_id: 1234567,
+                              column_id:  90787,
+                              elevator_id: 234576,
+                              employee_id: 190,
+                              start_intervention: "2009-04-27 00:43:58",
+                              end_intervention: "2009-04-27 00:43:58",
+                              result: "InComplete",
+                              report: " bla bla bla",
+                              status: "pending").save
+                              expect{intervention}.to_not change(Intervention, :count)
+                            end
+                          end        
             end
