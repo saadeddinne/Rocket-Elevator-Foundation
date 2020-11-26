@@ -5,7 +5,7 @@ RSpec.describe QuotesController, type: :controller do
         @quote = Quote.new       
     end
         
-    context "Quote controller testing:" do
+    context "Quote Model testing:" do
         it "Should return true: no missing attributes" do    
             puts " Quote with valid attributes: return True"          
                 quote = Quote.new(
@@ -30,7 +30,7 @@ RSpec.describe QuotesController, type: :controller do
         end
 
         # no change in the Quote model expected 
-        context "Quote controller testing: " do
+        context "Quote Model testing: " do
             it "Should return false: missing attributes " do 
                 puts " Quote with invalid attributes: return False"           
                     quote = Quote.new(
@@ -53,14 +53,17 @@ RSpec.describe QuotesController, type: :controller do
                     expect{quote}.to_not change(Quote, :count)
                 end
             end 
+           
+            context " Quote without User id (after log in)" do
+                it "after login if user id is missinge should return false" do
+                   
+                    @quote.user_id = nil
+                    @quote.save
+                    expect(@quote).to_not eq(true)
+                end
+            end
 
-    context " Quote without User id (after log in)" do
-        it "after login if user id is missinge should return false" do
-            @quote.user_id = nil
-            @quote.save
-            expect(@quote).to_not eq(true)
-        end
-    end
+            
     context "Test the HTTP response Quote controller " do
         render_views
         it "should retur 200 as response" do
@@ -87,7 +90,6 @@ RSpec.describe QuotesController, type: :controller do
                 expect(response.code).to eq "302"
         end
     end
-
 end
 
   
