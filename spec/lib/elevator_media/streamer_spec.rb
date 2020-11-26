@@ -97,11 +97,11 @@ describe ElevatorMedia::Streamer do
             # test is ok  expect(@treamer).to 
             html = @streamer.getContent(@quebec, "very bad argument!")
             puts html
-            expect(@streamer).to_not receive(:getContent).with(@quebec, "very bad argument!") 
-                 
+            expect(@streamer).to_not receive(:getContent).with(@quebec, "very bad argument!")                 
         end
     end
-    
+
   
 end
+
 

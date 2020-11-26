@@ -13,8 +13,24 @@ module ElevatorMedia
         # version 1:: return first media content weather by city ID getContent(city) 
         # Version2:: get media content specified by argument: forecast or covid
         def getContent(city, media) 
-           
+          
             if (media == "Forecast") 
+                climat = weatherAlex()
+                desc = climat.first["weather"]["description"]
+                tmp = climat.first["temp"]
+                sun = climat.first["sunset"]["description"]
+
+                html = "
+                <html><body>
+                    <div>
+                   Weather: #{desc},
+                   Temp: #{tmp},
+                   sunset: #{sun},
+                    </div>
+                    </html></body> "
+                    puts html
+
+              
                 weather =  self.getForecast(city)
                 if weather["cod"] == '404'
                     html = "ERROR 404 failure to connect to the API"
@@ -45,8 +61,7 @@ module ElevatorMedia
                     <h3>Total fatalities</h3>: #{covid.first["total_fatalities"]},  
                 </div>
             </body></html>"
-            end
-            
+            end            
             elsif (media == "Exchange") 
                 item = getExchange() 
                 time = item["time"].to_datetime            
@@ -59,13 +74,11 @@ module ElevatorMedia
                         <li>Amount: #{item["amount"]}</li>
                         </ul>
                     </div>
-                </body></html>"
-              
+                </body></html>"              
                 else 
                 html = "Undefined media type !"
-                end              
-         
-            return html
+                end            
+         return html
         end
         # get weather by City ID and return json content
         def getForecast(city)           
@@ -92,15 +105,12 @@ module ElevatorMedia
         # return Curency exchange
         def getExchange
             url = URI("https://currency13.p.rapidapi.com/convert/1/USD/CAD")
-
             http = Net::HTTP.new(url.host, url.port)
             http.use_ssl = true
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-            
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE            
             request = Net::HTTP::Get.new(url)
             request["x-rapidapi-key"] = '8def33723emshcd4f9bc61ab02a0p1a8c2bjsn88e772b27530'
-            request["x-rapidapi-host"] = 'currency13.p.rapidapi.com'
-            
+            request["x-rapidapi-host"] = 'currency13.p.rapidapi.com'            
             response = http.request(request)
             @output  = JSON.parse(response.body)
             if @output.empty?
@@ -109,5 +119,30 @@ module ElevatorMedia
                 return @output
             end
         end
+
+        
+    def weatherAlex
+       
+
+        url = URI("https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=-71.254028&lat=46.829853&units=M&lang=en")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        
+        request = Net::HTTP::Get.new(url)
+        request["x-rapidapi-key"] = '8def33723emshcd4f9bc61ab02a0p1a8c2bjsn88e772b27530'
+        request["x-rapidapi-host"] = 'weatherbit-v1-mashape.p.rapidapi.com'
+        
+        response = http.request(request)
+        if response.code == "200"
+            result = JSON.parse(response.body)
+            resultdata = result["data"]
+            return resultdata
+          else
+            return "ERROR!!!"
+          end 
+    end
+    # ---------------------------
     end
 end

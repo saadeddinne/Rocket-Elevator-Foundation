@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 gem 'geocoder'
 gem 'openssl'
+ gem "factory_bot_rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use mysql as the database for Active Record
@@ -74,7 +75,8 @@ group :development, :test do
   # rspec-rails is the testing framework.
   gem 'rspec-rails', '~> 3.5'
   # factory_girl_rails replaces Rails fixtures for generating data to use in the tests.
-   gem 'factory_girl_rails'
+  #  gem 'factory_girl_rails'
+ 
   # capybara provides helper methods that make integration testing easier.
     gem 'capybara', '>= 2.15'
   # database_cleaner allows us to manage our testing database with precision: we decide when to wipe data (e.g. after, before tests).
