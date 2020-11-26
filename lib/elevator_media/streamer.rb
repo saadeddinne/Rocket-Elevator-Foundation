@@ -7,9 +7,9 @@ puts "---- before app: please check the API keys ! -----"
 
 module ElevatorMedia
     class Streamer
-        def new
-            @streamer = Streamer.new
-        end
+        
+        @streamer = Streamer.new
+       
         # version 1:: return first media content weather by city ID getContent(city) 
         # Version2:: get media content specified by argument: forecast or covid
         def getContent(city, media) 
