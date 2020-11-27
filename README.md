@@ -1,38 +1,100 @@
-# Rocket Elevators API
+# Rocket Elevators
 
-## Week-9, Project Description
+## Week-10, Project Description
 
-This week we implement:
+The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
 
-- A new form to formulate the interventions (responsive)
-- The creation of a new table : interventions
-- Saving the request for intervention in the database
-- Sending a service ticket to ZenDesk
-- The addition of an API, implemented in c#, request that returns new interventions requests
+This module respect is:
 
-This app implements APIs in order to offer great user experience.
-
-- Twilio
-- Slack
-- DropBox
-- IBM Watson
-- ZenDesk
-- Google Maps
-- recaptcha
-- SendGrid
+- Reusable library. (in the 'lib' directory of your information system.)
+- Entirely developed with the "red-green-refactor" method
+- The TDD is made by using RSpec ( http://rspec.info )
+- All the content available and accessible via the getContent method.
+  Media sources:
+- Open Weather API
+- Covid-19 Canada API
+- Currency Exchange API
 
 **Here is the information you must enter in the sign in page to access the BackOffice :**
 
 - user : `mathieu.houde@codeboxx.biz`
 - password : `MathieuHoude`
+<hr>
+The APIs keys will be provided by a private message
 
 <hr>
+## Module PATH :
+The Module is located in the lib folder
 
-**[Saad eddine](https://github.com/saadeddinne)**
+```sh
+.
+└── lib
+    └── elevator_media
+        └── streamer.rb
+```
+
+## spec folder
+
+```sh
+.
+└── spec
+    ├── controllers
+    │   ├── intervention_controller_spec.rb
+    │   ├── quotes_controller_spec.rb
+    │   ├── user_controller_spec.rb
+    │   └── routing_spec.rb
+    ├── lib
+    │   └── elevator_media
+    │       └── streamer_spec
+    ├── rais_helper.rb
+    └── spec_helper.rb
+```
+
+## For Testing
+
+- run all tests :
+
+```sh
+rspec --format documentation
+```
+
+- run : ./spec/lib/elevator_media/streamer_spec.rb
+
+```sh
+rspec ./spec/lib/elevator_media/streamer_spec.rb
+```
+
+- run : ./spec/controllers/user_controller_spec.rb
+
+```sh
+rspec ./spec/controllers/user_controller_spec.rb
+```
+
+- run : ./spec/controllers/intervention_controller_spec.rb
+
+```sh
+rspec ./spec/controllers/intervention_controller_spec.rb
+```
+
+- run : ./spec/controllers/quotes_controller_spec.rb
+
+```sh
+rspec ./spec/controllers/quotes_controller_spec.rb
+```
+
+- run : ./spec/controllers/routing_spec.rb
+
+```sh
+rspec ./spec/controllers/routing_spec.rb
+```
+
+TDD: JS + JEST
 
 <hr>
 
 ### The Repo : [Rocket_Elevators_API](https://github.com/saadeddinne/Rocket-Elevator-Foundation)
+
+# Week 9: project
 
 ## API Google Maps
 
