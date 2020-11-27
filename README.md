@@ -10,10 +10,12 @@ This module:
 - Entirely developed with the "red-green-refactor" method
 - The TDD is made by using RSpec ( http://rspec.info )
 - All the content available and accessible via the getContent method.
-  Media sources:
-- Open Weather API
-- Covid-19 Canada API
-- Currency Exchange API
+
+Media sources:
+
+- Open Weather API: https://openweathermap.org/api
+- Covid-19 Canada API : https://api.covid19tracker.ca/summary
+- Currency Exchange API: https://rapidapi.com/fyhao/api/Currency%20Exchange
 
 **Here is the information you must enter in the sign in page to access the BackOffice :**
 
