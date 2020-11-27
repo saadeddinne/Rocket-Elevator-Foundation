@@ -47,9 +47,9 @@ The Module is located in the lib folder
 └── spec
     ├── controllers
     │   ├── customers_controller_spec.rb
-    │   ├── intervention_controller_spec.rb
+    │   ├── interventions_controller_spec.rb
     │   ├── quotes_controller_spec.rb
-    │   ├── user_controller_spec.rb
+    │   ├── users_controller_spec.rb
     │   └── routing_spec.rb
     ├── lib
     │   └── elevator_media
