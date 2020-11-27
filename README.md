@@ -4,7 +4,7 @@
 
 The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
 
-This module respect is:
+This module:
 
 - Reusable library. (in the 'lib' directory of your information system.)
 - Entirely developed with the "red-green-refactor" method
