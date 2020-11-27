@@ -59,37 +59,37 @@ The Module is located in the lib folder
 
 ## For Testing
 
-- run all tests :
+- To run all tests :
 
 ```sh
 rspec --format documentation
 ```
 
-- run : ./spec/lib/elevator_media/streamer_spec.rb
+- Test : ./spec/lib/elevator_media/streamer_spec.rb
 
 ```sh
 rspec ./spec/lib/elevator_media/streamer_spec.rb
 ```
 
-- run : ./spec/controllers/user_controller_spec.rb
+- Test : ./spec/controllers/user_controller_spec.rb
 
 ```sh
 rspec ./spec/controllers/user_controller_spec.rb
 ```
 
-- run : ./spec/controllers/intervention_controller_spec.rb
+- Test : ./spec/controllers/intervention_controller_spec.rb
 
 ```sh
 rspec ./spec/controllers/intervention_controller_spec.rb
 ```
 
-- run : ./spec/controllers/quotes_controller_spec.rb
+- Test : ./spec/controllers/quotes_controller_spec.rb
 
 ```sh
 rspec ./spec/controllers/quotes_controller_spec.rb
 ```
 
-- run : ./spec/controllers/routing_spec.rb
+- Test : ./spec/controllers/routing_spec.rb
 
 ```sh
 rspec ./spec/controllers/routing_spec.rb
