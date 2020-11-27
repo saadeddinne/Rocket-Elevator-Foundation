@@ -46,6 +46,7 @@ The Module is located in the lib folder
 .
 └── spec
     ├── controllers
+    │   ├── customers_controller_spec.rb
     │   ├── intervention_controller_spec.rb
     │   ├── quotes_controller_spec.rb
     │   ├── user_controller_spec.rb
@@ -69,6 +70,12 @@ rspec --format documentation
 
 ```sh
 rspec ./spec/lib/elevator_media/streamer_spec.rb
+```
+
+- Test : ./spec/controllers/customers_controller_spec.rb
+
+```sh
+rspec ./spec/controllers/customers_controller_spec.rb
 ```
 
 - Test : ./spec/controllers/users_controller_spec.rb
