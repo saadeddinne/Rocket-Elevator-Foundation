@@ -63,4 +63,5 @@ RSpec.describe InterventionController, type: :controller do
                                     expect(response.code).to eq "302"
                             end
                         end
+                       
             end

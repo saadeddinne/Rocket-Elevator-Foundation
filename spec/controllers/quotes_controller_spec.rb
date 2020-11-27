@@ -62,6 +62,7 @@ RSpec.describe QuotesController, type: :controller do
                     expect(@quote).to_not eq(true)
                 end
             end
+            
 
             
     context "Test the HTTP response Quote controller " do

@@ -71,16 +71,16 @@ rspec --format documentation
 rspec ./spec/lib/elevator_media/streamer_spec.rb
 ```
 
-- Test : ./spec/controllers/user_controller_spec.rb
+- Test : ./spec/controllers/users_controller_spec.rb
 
 ```sh
-rspec ./spec/controllers/user_controller_spec.rb
+rspec ./spec/controllers/users_controller_spec.rb
 ```
 
-- Test : ./spec/controllers/intervention_controller_spec.rb
+- Test : ./spec/controllers/interventions_controller_spec.rb
 
 ```sh
-rspec ./spec/controllers/intervention_controller_spec.rb
+rspec ./spec/controllers/interventions_controller_spec.rb
 ```
 
 - Test : ./spec/controllers/quotes_controller_spec.rb
@@ -89,10 +89,10 @@ rspec ./spec/controllers/intervention_controller_spec.rb
 rspec ./spec/controllers/quotes_controller_spec.rb
 ```
 
-- Test : ./spec/controllers/routing_spec.rb
+- Test : ./spec/controllers/routings_spec.rb
 
 ```sh
-rspec ./spec/controllers/routing_spec.rb
+rspec ./spec/controllers/routings_spec.rb
 ```
 
 TDD: JS + JEST
