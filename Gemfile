@@ -117,7 +117,7 @@ group :development do
   gem 'dropbox-api'
   gem 'dropbox_api'
   gem 'sendgrid-ruby'
-  gem "zendesk_api"
+  # gem "zendesk_api"
   # TDD gems 
   gem 'open-weather'
   gem "recaptcha", require: "recaptcha/rails"
