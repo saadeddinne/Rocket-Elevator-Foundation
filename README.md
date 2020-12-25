@@ -17,6 +17,12 @@ All the system are updated with the new databases, and monotoring system is adde
 - Customers Portal
   the params of accounts will be provid it privately.
 
+ <hr>
+## Preview
+<hr>
+
+![](preview.gif)
+
 ## Week-10, Project Description
 
 The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
