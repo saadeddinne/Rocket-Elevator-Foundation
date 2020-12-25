@@ -5,6 +5,8 @@ ruby '2.6.5'
 gem 'geocoder'
 gem 'openssl'
 gem 'factory_bot_rails'
+# Monotoring with newrelic
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
