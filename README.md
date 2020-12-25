@@ -3,6 +3,20 @@
   🚀  CodeBoxx
 </h4>
 
+## Week-14, Project Description
+
+The Information System for Rocket Elevators, is runing from an instance hosted on AWS, with Monitoring performed by:
+
+- New Relic
+- Google Analytics
+
+All the system are updated with the new databases, and monotoring system is added to:
+
+- Ruby on rails
+- Rest API
+- Customers Portal
+  the params of accounts will be provid it privately.
+
 ## Week-10, Project Description
 
 The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
